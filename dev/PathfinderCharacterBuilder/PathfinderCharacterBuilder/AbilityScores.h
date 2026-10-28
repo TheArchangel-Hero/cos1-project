@@ -3,7 +3,6 @@
 
 struct AbilityScores {
 
-	// Declarations for individual Ability Scores:
 	// Ability Scores are set to default to 10.
 	int strength = 10;
 	int dexterity = 10;
@@ -12,7 +11,8 @@ struct AbilityScores {
 	int wisdom = 10;
 	int charisma = 10;
 
-	// Declarations for Getters for modifiers.
+	// Modifiers for each Ability Score are derived from the following formula:
+	// (score - 10) / 2
 	int getModifier(int score) const;
 	int getStrMod() const;
 	int getDexMod() const;
