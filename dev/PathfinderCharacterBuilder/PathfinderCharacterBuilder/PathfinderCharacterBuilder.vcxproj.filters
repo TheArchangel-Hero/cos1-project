@@ -24,12 +24,18 @@
     <ClCompile Include="Skill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Race.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbilityScores.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Race.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
