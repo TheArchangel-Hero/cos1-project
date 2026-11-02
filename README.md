@@ -22,7 +22,13 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 1
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+⚙️ Overview - I added several struct objects (although I might change these to classes later) as well as a placeholder Main Menu.
+<br>
+🌵 Challenges - The menu will essentially have to remain unfunctional until all of the component objects are implemented, meaning I can't test actually building a character until later down the line.
+<br>
+🏆 Accomplishments - I've gotten somewhat better about understanding and navigating GitHub and Visual Studio.
+<br>
+🔮 Next Steps - I want to get all of the objects implemented so I can begin work on a functioning "builder" within the menu system.
 
 ### Week 2
 
