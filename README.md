@@ -1,30 +1,8 @@
-# 🚀 Welcome to Project & Portfolio!
-
-This repository will be used to keep track of research and development conducted in this class. Follow the instructions below to get started.
-cos
-### Getting Started
-
-**1.** Review the [About](./docs/01_about/README.md) README and all of the links it provides.
-
-**2.** Review the documentation and [Getting Started](./docs/02_getting_started/README.md) steps in this repository's docs folder.
-
-**3.** Attend the first Live Lecture to see a live setup demo. If you are unable to attend, make sure to watch the archive.
-
-### Next Steps...
-
-After completing the above steps, feel free to begin updating this readme where indicated below. Remember to update this document each week to receive proper credit for the weekly Milestone assignment.
-
-<br>
-
-> ❗️ &nbsp; Now that you have read to this point, go ahead and delete this sentence and everything above it.
-
-<br>
-
 # Project & Portfolio 1
 
-### Student First & Last Name
+### Connor Ethridge
 
-Hello my name is [enter name]. I am a student from [where are you from?]. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
+Hello my name is [Connor Ethridge]. I am a student from [Baton Rouge, LA]. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
 
 <br>
 
@@ -44,7 +22,13 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 1
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+⚙️ Overview - I added several struct objects (although I might change these to classes later) as well as a placeholder Main Menu.
+<br>
+🌵 Challenges - The menu will essentially have to remain unfunctional until all of the component objects are implemented, meaning I can't test actually building a character until later down the line.
+<br>
+🏆 Accomplishments - I've gotten somewhat better about understanding and navigating GitHub and Visual Studio.
+<br>
+🔮 Next Steps - I want to get all of the objects implemented so I can begin work on a functioning "builder" within the menu system.
 
 ### Week 2
 

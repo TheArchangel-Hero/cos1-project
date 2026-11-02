@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="PathfinderCharacterBuilder/PathfinderCharacterBuilder.vcxproj" Id="382b54e4-f1a0-4ed3-b6e8-a861a161b6c9" />
+</Solution>
