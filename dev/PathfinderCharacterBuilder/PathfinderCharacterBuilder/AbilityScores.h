@@ -32,7 +32,7 @@ public:
 		return charisma;
 	}
 
-	//Setters
+	// Setters
 	void setStrength(int value) {
 		strength = value;
 	}

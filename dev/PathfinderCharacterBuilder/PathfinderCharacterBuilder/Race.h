@@ -21,11 +21,11 @@ private:
 	// Default is 30
 	int baseSpeed = 30;
 
-	// Staring languages
+	// Starting languages
 	std::vector<std::string> languages;
 
 	// Racial Traits
-	// These are descriptions for now. Mechanical effects will be added as if statements later
+	// These are descriptions for now. Mechanical effects will be added as if statements later.
 	std::vector<std::string> traits;
 
 public:

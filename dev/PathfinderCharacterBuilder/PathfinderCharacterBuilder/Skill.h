@@ -27,7 +27,7 @@ public:
 	// The majority of skills are tied to Intelligence, so it is set as default.
 	KeyAbility keyAbility = KeyAbility::Intelligence;
 
-	//Getters
+	// Getters
 	std::string getName() const {
 		return name;
 	}
@@ -44,7 +44,7 @@ public:
 		return trainedOnly;
 	}
 
-	//Setter
+	// Setters
 	void setName(const std::string& n) {
 		name = n;
 	}
