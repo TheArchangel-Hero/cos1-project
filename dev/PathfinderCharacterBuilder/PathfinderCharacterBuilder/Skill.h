@@ -2,7 +2,8 @@
 #include <string>
 #include "AbilityScores.h"
 
-struct Skill {
+class Skill {
+private:
 	std::string name;
 	// Each skill is tied to a key Ability Score
 	enum class KeyAbility {
@@ -23,6 +24,42 @@ struct Skill {
 
 	// Trained-only skills can only be used as long as rank is at least 1.
 	bool trainedOnly = false;
+
+public:
+	//Getters
+	std::string getName() const {
+		return name;
+	}
+	int getRanks() const {
+		return ranks;
+	}
+	int getMiscBonus() const {
+		return miscBonus;
+	}
+	bool getClassSkill() const {
+		return isClassSkill;
+	}
+	bool getTrainedOnly() const {
+		return trainedOnly;
+	}
+
+	//Setter
+	void setName(const std::string& n) {
+		name = n;
+	}
+	bool setRanks(int newRanks, int maxRanks);
+	void setMiscBonus(int bonus) {
+		miscBonus = bonus;
+	}
+	void setClassSkill(bool value) {
+		isClassSkill = value;
+	}
+	void setTrainedOnly(bool value) {
+		trainedOnly = value;
+	}
+	void setKeyAbility(KeyAbility ability) {
+		keyAbility = ability;
+	}
 
 	// Each skill will need its total modifier value calculated.
 	int getTotal(const AbilityScores& abilities) const;

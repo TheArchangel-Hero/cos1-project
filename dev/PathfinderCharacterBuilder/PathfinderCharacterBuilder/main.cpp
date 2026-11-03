@@ -30,12 +30,12 @@ void createCharacter() {
 
     // Temp data for menu test
     AbilityScores scores;
-    scores.strength = 14;
-    scores.dexterity = 12;
-    scores.constitution = 10;
-    scores.intelligence = 18;
-    scores.wisdom = 8;
-    scores.charisma = 16;
+    scores.setStrength(14);
+    scores.setDexterity(12);
+    scores.setConstitution(10);
+    scores.setIntelligence(18);
+    scores.setWisdom(8);
+    scores.setCharisma(16);
 
     Race elf = makeElf();
     elf.applyAbilityBonuses(scores);
