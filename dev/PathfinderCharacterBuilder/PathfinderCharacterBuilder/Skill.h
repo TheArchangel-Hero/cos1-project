@@ -5,13 +5,7 @@
 class Skill {
 private:
 	std::string name;
-	// Each skill is tied to a key Ability Score
-	enum class KeyAbility {
-		Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma
-	}
-	// The majority of skills are tied to Intelligence, so it is set as default.
-	keyAbility = KeyAbility::Intelligence;
-
+	
 	// Skill ranks spent. Each increases value of skill modifier by 1.
 	// TO DO: Maximum value is equal to Character Level. Minimum is 0.
 	int ranks = 0;
@@ -26,6 +20,13 @@ private:
 	bool trainedOnly = false;
 
 public:
+	// Each skill is tied to a key Ability Score
+	enum class KeyAbility {
+		Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma
+	};
+	// The majority of skills are tied to Intelligence, so it is set as default.
+	KeyAbility keyAbility = KeyAbility::Intelligence;
+
 	//Getters
 	std::string getName() const {
 		return name;
