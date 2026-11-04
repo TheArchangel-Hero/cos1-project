@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <vector>
 #include "AbilityScores.h"
 #include "Skill.h"
 #include "Race.h"
@@ -9,6 +10,125 @@
 void clearInput() {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+// Prompt User to Continue Function (Pause for ease of use)
+void pause() {
+    std::cout << "\nPress Enter to continue...";
+    clearInput();
+    std::cin.get();
+}
+
+// Select Race Function
+Race chooseRace() {
+    while (true) {
+        std::cout << "\n--- Choose Race ---\n";
+        std::cout << "1. Dwarf\n";
+        std::cout << "2. Elf\n";
+        std::cout << "3. Gnome\n";
+        std::cout << "4. Half-Elf\n";
+        std::cout << "5. Half-Orc\n";
+        std::cout << "6. Halfling\n";
+        std::cout << "7. Human\n";
+        std::cout << "Enter the number corresponding to your choice: ";
+
+        int choice;
+        std::cin >> choice;
+        if (std::cin.fail()) {
+            std::cout << "Please enter a number corresponding to an available option.\n";
+            clearInput();
+            continue;
+        }
+        clearInput();
+
+        switch (choice) {
+        case 1: return makeDwarf();
+        case 2: return makeElf();
+        case 3: return makeGnome();
+        case 4: return makeHalfElf();
+        case 5: return makeHalfOrc();
+        case 6: return makeHalfling();
+        case 7: return makeHuman();
+        default:
+            std::cout << "Invalid choice. Enter a number corresponding to an available option.\n";
+            break;
+        }
+    }
+}
+
+// Human, Half-Elf, Half-Orc Ability Score Bonus Function
+// Humans, Half-Elves, and Half-Orcs get to choose which Ability Score their bonus applies to.
+void applyChoiceBonus(AbilityScores& scores) {
+    while (true) {
+        std::cout << "\nThis race gets +2 to one Ability Score of your choice.\n";
+        std::cout << "1. Strength\n";
+        std::cout << "2. Dexterity\n";
+        std::cout << "3. Constitution\n";
+        std::cout << "4. Intelligence\n";
+        std::cout << "5. Wisdom\n";
+        std::cout << "6. Charisma\n";
+        std::cout << "Enter the number corresponding to your choice: ";
+
+        int choice;
+        std::cin >> choice;
+        if (std::cin.fail()) {
+            std::cout << "Enter a number corresponding to an available option.\n";
+            clearInput();
+            continue;
+        }
+        clearInput();
+
+        switch (choice) {
+        case 1: scores.setStrength(scores.getStrength() + 2);
+            return;
+        case 2: scores.setDexterity(scores.getDexterity() + 2);
+            return;
+        case 3: scores.setConstitution(scores.getConstitution() + 2);
+            return;
+        case 4: scores.setIntelligence(scores.getIntelligence() + 2);
+            return;
+        case 5: scores.setWisdom(scores.getWisdom() + 2);
+            return;
+        case 6: scores.setCharisma(scores.getCharisma() + 2);
+            return;
+        default:
+            std::cout << "Invalid choice. Enter a number corresponding to an available option.\n";
+            break;
+        }
+    }
+}
+
+// Assign Ability Scores
+// For now, Ability Scores are assigned as the user chooses
+// TO DO: Add a dice roller for Standard Ability Score assignment ruleset
+AbilityScores chooseAbilityScores() {
+    AbilityScores scores;
+    std::cout << "\n--- Assign Ability Scores ---\n";
+    std::cout << "Ability Scores are typically between 7 and 18 for a starting character.\n";
+    std::cout << "Assign a value of your choice for each Ability Score.\n";
+
+    int value;
+    std::cout << "Strength: ";
+    std::cin >> value;
+    scores.setStrength(value);
+    std::cout << "Dexterity: ";
+    std::cin >> value;
+    scores.setDexterity(value);
+    std::cout << "Constitution: ";
+    std::cin >> value;
+    scores.setConstitution(value);
+    std::cout << "Intelligence: ";
+    std::cin >> value;
+    scores.setIntelligence(value);
+    std::cout << "Wisdom: ";
+    std::cin >> value;
+    scores.setWisdom(value);
+    std::cout << "Charisma: ";
+    std::cin >> value;
+    scores.setCharisma(value);
+    clearInput();
+
+    return scores;
 }
 
 // Main Menu Function
@@ -26,33 +146,50 @@ void showMainMenu() {
 // Create Character Menu Option Function
 void createCharacter() {
     std::cout << "\n--- Create New Character ---\n";
-    std::cout << "(Placeholder - real creation steps will go here)\n\n";
 
-    // Temp data for menu test
-    AbilityScores scores;
-    scores.setStrength(14);
-    scores.setDexterity(12);
-    scores.setConstitution(10);
-    scores.setIntelligence(18);
-    scores.setWisdom(8);
-    scores.setCharisma(16);
+    // Name
+    std::string name;
+    std::cout << "Enter a name for the character: ";
+    std::getline(std::cin, name);
+    if (name.empty()) {
+        clearInput();
+        std::getline(std::cin, name);
+    }
 
-    Race elf = makeElf();
-    elf.applyAbilityBonuses(scores);
-    std::cout << "Placeholder Character:\n";
-    elf.print();
-    std::cout << "\nAbility Scores after racial adjustment:\n";
+    // Race
+    Race race = chooseRace();
+    std::cout << "\nSelected Race:\n";
+    race.print();
+
+    // Base Ability Scores
+    AbilityScores scores = chooseAbilityScores();
+    std::cout << "\nBase Ability Scores:\n";
     scores.print();
 
-    std::cout << "\nPress Enter to return to main menu...";
-    clearInput();
-    std::cin.get();
+    // Racial Ability Score Adjustment
+    std::string raceName = race.getName();
+    if (raceName == "Human" || raceName == "Half-Elf" || raceName == "Half-Orc") {
+        applyChoiceBonus(scores);
+    }
+    else {
+        race.applyAbilityBonuses(scores);
+    }
+    std::cout << "\nAbility Scores after Racial Adjustment:\n";
+    scores.print();
+
+    // Creation Summary
+    std::cout << "\n--- Character Summary ---\n";
+    std::cout << "Name: " << name << "\n";
+    std::cout << "Race: " << race.getName() << "\n\n";
+    scores.print();
+
+    pause();
 }
 
 // View Character Menu Option Function
 void viewCharacter() {
     std::cout << "\n--- View Current Character ---\n";
-    std::cout << "(Placeholder - no character created yet)\n";
+    std::cout << "(Placeholder - no Character class created yet)\n";
     std::cout << "\nPress Enter to return to main menu...";
     clearInput();
     std::cin.get();
@@ -69,36 +206,6 @@ void loadCharacter() {
 
 int main()
 {
-    // Test for AbilityScores:
-    //AbilityScores scores;
-    //scores.dexterity = 16;
-    //scores.print();
-    //return 0;
-
-    // Test for Skill:
-    //Skill acrobatics;
-    //acrobatics.name = "Acrobatics";
-    //acrobatics.keyAbility = Skill::KeyAbility::Dexterity;
-    //acrobatics.ranks = 0;
-    //acrobatics.isClassSkill = true;
-    //acrobatics.trainedOnly = true;
-    //acrobatics.print(scores);
-    //return 0;
-
-    // Test for Race:
-    //AbilityScores scores;
-    //scores.strength = 14;
-    //scores.dexterity = 12;
-    //scores.constitution = 10;
-    //scores.intelligence = 18;
-    //scores.wisdom = 8;
-    //scores.charisma = 16;
-    //Race elf = makeElf();
-    //elf.applyAbilityBonuses(scores);
-    //elf.print();
-    //scores.print();
-    //return 0;
-
     bool running = true;
 
     while (running) {
@@ -112,6 +219,7 @@ int main()
             clearInput();
             continue;
         }
+        clearInput();
 
         switch (choice) {
         case 1:
