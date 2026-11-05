@@ -38,6 +38,8 @@ void Feat::print() const {
 }
 
 // Feat Template Functions
+// Note: Currently only Feats beginning with A are implemented.
+// TO DO: Implement remaining Feats
 // A
 Feat makeAcrobatic() {
 	Feat feat;
