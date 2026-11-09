@@ -4,7 +4,10 @@
 #include <vector>
 #include "AbilityScores.h"
 #include "Skill.h"
+#include "Spell.h"
+#include "Feat.h"
 #include "Race.h"
+#include "CharacterClass.h"
 #include "Character.h"
 
 // Clear Input Function
@@ -99,6 +102,52 @@ void applyChoiceBonus(AbilityScores& scores) {
     }
 }
 
+// Select Class Function
+CharacterClass chooseClass() {
+    while (true) {
+        std::cout << "\n--- Choose Class ---\n";
+        std::cout << "1. Barbarian\n";
+        std::cout << "2. Bard\n";
+        std::cout << "3. Cleric\n";
+        std::cout << "4. Druid\n";
+        std::cout << "5. Fighter\n";
+        std::cout << "6. Monk\n";
+        std::cout << "7. Paladin\n";
+        std::cout << "8. Ranger\n";
+        std::cout << "9. Rogue\n";
+        std::cout << "10. Sorcerer\n";
+        std::cout << "11. Wizard\n";
+        std::cout << "Enter the number corresponding to your choice: ";
+
+        int choice;
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Enter a number corresponding to an available option.\n";
+            clearInput();
+            continue;
+        }
+        clearInput();
+
+        switch (choice) {
+        case 1:  return makeBarbarian();
+        case 2:  return makeBard();
+        case 3:  return makeCleric();
+        case 4:  return makeDruid();
+        case 5:  return makeFighter();
+        case 6:  return makeMonk();
+        case 7:  return makePaladin();
+        case 8:  return makeRanger();
+        case 9:  return makeRogue();
+        case 10: return makeSorcerer();
+        case 11: return makeWizard();
+        default:
+            std::cout << "Invalid choice. Enter a number corresponding to an available option.\n";
+            break;
+        }
+    }
+}
+
 // Declaration for currentCharacter, in order to save information in memory
 Character currentCharacter;
 
@@ -181,17 +230,23 @@ void createCharacter() {
     std::cout << "\nAbility Scores after Racial Adjustment:\n";
     scores.print();
 
+    // Class
+    CharacterClass characterClass = chooseClass();
+    std::cout << "\nSelected Class:\n";
+    characterClass.print();
+
     // Creation Summary
     std::cout << "\n--- Character Summary ---\n";
     std::cout << "Name: " << name << "\n";
-    std::cout << "Race: " << race.getName() << "\n\n";
+    std::cout << "Race: " << race.getName() << "\n";
+    std::cout << "Class:  " << characterClass.getName() << "\n\n";
     scores.print();
 
     // Save to currentCharacter
     currentCharacter.setName(name);
     currentCharacter.setRace(race);
     currentCharacter.setScores(scores);
-    // currentCharacter.setClass(chosenClass);
+    currentCharacter.setClass(characterClass);
     currentCharacter.markCreated();
     std::cout << "\n Successfully created and saved Character: " << name << "\n";
 
