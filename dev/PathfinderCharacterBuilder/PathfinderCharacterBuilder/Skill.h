@@ -70,4 +70,14 @@ public:
 
 	// Print.
 	void print(const AbilityScores& abilities) const;
+
+	// SkillOption to list all skills as selectable within the creator.
+	struct SkillOption {
+		// Name of the skill
+		std::string name;
+		// Tied key ability, as above
+		KeyAbility ability;
+		// Trained Only, as above
+		bool trainedOnly = false;
+	};
 };

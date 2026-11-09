@@ -31,6 +31,18 @@ int Skill::getTotal(const AbilityScores& abilities) const {
 	return total;
 }
 
+// Check Rank update
+bool Skill::setRanks(int newRanks, int maxRanks) {
+	if (newRanks < 0) {
+		return false;
+	}
+	if (newRanks > maxRanks) {
+		return false;
+	}
+	ranks = newRanks;
+	return true;
+}
+
 // Print Skill modifier. If skill is trained only, print [Trained Only].
 void Skill::print(const AbilityScores& abilities) const {
 	std::cout << name << ": " << getTotal(abilities);
