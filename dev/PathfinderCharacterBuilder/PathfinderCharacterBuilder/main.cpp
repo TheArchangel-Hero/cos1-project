@@ -5,6 +5,7 @@
 #include "AbilityScores.h"
 #include "Skill.h"
 #include "Race.h"
+#include "Character.h"
 
 // Clear Input Function
 void clearInput() {
@@ -98,6 +99,9 @@ void applyChoiceBonus(AbilityScores& scores) {
     }
 }
 
+// Declaration for currentCharacter, in order to save information in memory
+Character currentCharacter;
+
 // Assign Ability Scores
 // For now, Ability Scores are assigned as the user chooses
 // TO DO: Add a dice roller for Standard Ability Score assignment ruleset
@@ -183,16 +187,22 @@ void createCharacter() {
     std::cout << "Race: " << race.getName() << "\n\n";
     scores.print();
 
+    // Save to currentCharacter
+    currentCharacter.setName(name);
+    currentCharacter.setRace(race);
+    currentCharacter.setScores(scores);
+    // currentCharacter.setClass(chosenClass);
+    currentCharacter.markCreated();
+    std::cout << "\n Successfully created and saved Character: " << name << "\n";
+
     pause();
 }
 
 // View Character Menu Option Function
 void viewCharacter() {
     std::cout << "\n--- View Current Character ---\n";
-    std::cout << "(Placeholder - no Character class created yet)\n";
-    std::cout << "\nPress Enter to return to main menu...";
-    clearInput();
-    std::cin.get();
+    currentCharacter.print();
+    pause();
 }
 
 // Load Character Menu Option Function

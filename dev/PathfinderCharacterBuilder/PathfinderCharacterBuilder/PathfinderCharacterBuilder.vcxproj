@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbilityScores.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterClass.cpp" />
     <ClCompile Include="Feat.cpp" />
     <ClCompile Include="main.cpp" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbilityScores.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterClass.h" />
     <ClInclude Include="Feat.h" />
     <ClInclude Include="Race.h" />

@@ -202,7 +202,7 @@ Spell makeColorSpray();
 Spell makeCommand();
 Spell makeCommandGreater();
 Spell makeCommandPlants();
-Spell makeCommandUndead();
+Spell makeCommandUndeadSpell();
 Spell makeCommune();
 Spell makeCommuneWithNature();
 Spell makeComprehendLanguages();

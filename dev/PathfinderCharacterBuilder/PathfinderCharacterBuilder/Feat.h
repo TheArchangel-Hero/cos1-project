@@ -86,7 +86,7 @@ Feat makeCleave();
 Feat makeCombatCasting();
 Feat makeCombatExpertise();
 Feat makeCombatReflexes();
-Feat makeCommandUndead();
+Feat makeCommandUndeadFeat();
 Feat makeCraftMagicArmsAndArmor();
 Feat makeCraftRod();
 Feat makeCraftStaff();
