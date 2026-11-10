@@ -32,8 +32,13 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 2
 
-My next stand up will go here...
-
+⚙️ Overview - I added several more class objects and implemented them into the Character Creator. I also have the program functioning in a successful proof-of-concept build.
+<br>
+🌵 Challenges - I ran into a duplication problem within the program, where certain options were able to be selected multiple times. To fix this, I modified my code to check for duplicates and reprompt the user for a valid choice if a duplicate option was selected.
+<br>
+🏆 Accomplishments - I've succeeded in creating a working build for the program, albeit one that has limited options, so it performs more as a proof-of-concept than a finished program.
+<br>
+🔮 Next Steps - I need to provide a way for the created character to be saved and loaded between sessions. Additionally, with extra time I will fill in the options that aren't included, such as the remaining Feats and Spells. Ideally, I would also provide a way to level a character beyond 1st level, but that seems unfeasible within the scope of the month's work.
 ### Week 3
 
 Stay tuned, this stand up is coming soon...

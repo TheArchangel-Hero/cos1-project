@@ -2,15 +2,10 @@
 #include <string>
 #include "AbilityScores.h"
 
-struct Skill {
+class Skill {
+private:
 	std::string name;
-	// Each skill is tied to a key Ability Score
-	enum class KeyAbility {
-		Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma
-	}
-	// The majority of skills are tied to Intelligence, so it is set as default.
-	keyAbility = KeyAbility::Intelligence;
-
+	
 	// Skill ranks spent. Each increases value of skill modifier by 1.
 	// TO DO: Maximum value is equal to Character Level. Minimum is 0.
 	int ranks = 0;
@@ -24,6 +19,49 @@ struct Skill {
 	// Trained-only skills can only be used as long as rank is at least 1.
 	bool trainedOnly = false;
 
+public:
+	// Each skill is tied to a key Ability Score
+	enum class KeyAbility {
+		Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma
+	};
+	// The majority of skills are tied to Intelligence, so it is set as default.
+	KeyAbility keyAbility = KeyAbility::Intelligence;
+
+	// Getters
+	std::string getName() const {
+		return name;
+	}
+	int getRanks() const {
+		return ranks;
+	}
+	int getMiscBonus() const {
+		return miscBonus;
+	}
+	bool getClassSkill() const {
+		return isClassSkill;
+	}
+	bool getTrainedOnly() const {
+		return trainedOnly;
+	}
+
+	// Setters
+	void setName(const std::string& n) {
+		name = n;
+	}
+	bool setRanks(int newRanks, int maxRanks);
+	void setMiscBonus(int bonus) {
+		miscBonus = bonus;
+	}
+	void setClassSkill(bool value) {
+		isClassSkill = value;
+	}
+	void setTrainedOnly(bool value) {
+		trainedOnly = value;
+	}
+	void setKeyAbility(KeyAbility ability) {
+		keyAbility = ability;
+	}
+
 	// Each skill will need its total modifier value calculated.
 	int getTotal(const AbilityScores& abilities) const;
 
@@ -32,4 +70,14 @@ struct Skill {
 
 	// Print.
 	void print(const AbilityScores& abilities) const;
+
+	// SkillOption to list all skills as selectable within the creator.
+	struct SkillOption {
+		// Name of the skill
+		std::string name;
+		// Tied key ability, as above
+		KeyAbility ability;
+		// Trained Only, as above
+		bool trainedOnly = false;
+	};
 };
