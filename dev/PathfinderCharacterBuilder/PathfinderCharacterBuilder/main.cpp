@@ -149,12 +149,14 @@ CharacterClass chooseClass() {
 }
 
 // Select Skills Function
-void chooseSkills(Character& character, const CharacterClass& selectedClass, const AbilityScores& scores) {
+void chooseSkills(Character* character, const CharacterClass& selectedClass, const AbilityScores& scores) {
+    // empty check
+    if (character == nullptr) return;
     int skillPoints = selectedClass.getSkillRanksPerLevel() + scores.getIntMod();
     // Skill ranks per level minimum is 1
     if (skillPoints < 1) skillPoints = 1;
     // Humans get 1 extra rank per level
-    if (character.getRace().getName() == "Human") skillPoints += 1;
+    if (character->getRace().getName() == "Human") skillPoints += 1;
 
     std::vector<Skill::SkillOption> allSkills = {
     { "Acrobatics", Skill::KeyAbility::Dexterity, false },
@@ -218,7 +220,7 @@ void chooseSkills(Character& character, const CharacterClass& selectedClass, con
         const auto& option = allSkills[choice - 1];
 
         bool alreadySelected = false;
-        for (const auto& existing : character.getSkills()) {
+        for (const auto& existing : character->getSkills()) {
             if (existing.getName() == option.name) {
                 alreadySelected = true;
                 break;
@@ -244,7 +246,7 @@ void chooseSkills(Character& character, const CharacterClass& selectedClass, con
         }
 
         skill.setRanks(1, 1);
-        character.addSkill(skill);
+        character->addSkill(skill);
         skillPoints--;
         std::cout << option.name << " rank added.\n";
     }
@@ -252,13 +254,15 @@ void chooseSkills(Character& character, const CharacterClass& selectedClass, con
 
 // Select Feats Function
 // Note: Only Feats beginning with "A" are implemented so far
-void chooseFeats(Character& character) {
+void chooseFeats(Character* character) {
+    // empty check
+    if (character == nullptr) return;
     // Characters gain a new Feat every odd level
     int featChoiceCount = 1;
     // Humans get a bonus Feat at 1st level
-    if (character.getRace().getName() == "Human") featChoiceCount++;
+    if (character->getRace().getName() == "Human") featChoiceCount++;
     // Fighters get a bonus combat Feat at 1st level and every even level
-    if (character.getClass().getName() == "Fighter") featChoiceCount++;
+    if (character->getClass().getName() == "Fighter") featChoiceCount++;
 
     std::cout << "\n--- Choose Feats ---\n";
     std::cout << "You may select " << featChoiceCount << " feat(s).\n";
@@ -573,7 +577,7 @@ void chooseFeats(Character& character) {
             if (!validChoice) continue;
 
             bool alreadySelected = false;
-            for (const auto& existing : character.getFeats()) {
+            for (const auto& existing : character->getFeats()) {
                 if (existing.getName() == newFeat.getName()) {
                     alreadySelected = true;
                     break;
@@ -584,7 +588,7 @@ void chooseFeats(Character& character) {
                 continue;
             }
 
-            character.addFeat(newFeat);
+            character->addFeat(newFeat);
             std::cout << newFeat.getName() << " added.\n";
             break;
         }
@@ -593,7 +597,9 @@ void chooseFeats(Character& character) {
 
 // Select Spells Function
 // Note: Only Spells beginning with "A" are implemented so far
-void chooseSpells(Character& character, const CharacterClass& selectedClass) {
+void chooseSpells(Character* character, const CharacterClass& selectedClass) {
+    // empty check
+    if (character == nullptr) return;
     std::string className = selectedClass.getName();
     bool isCaster = (className == "Bard" || className == "Cleric" || className == "Druid" || className == "Paladin" || className == "Ranger" || className == "Sorcerer" || className == "Wizard");
     if (!isCaster) return;
@@ -766,7 +772,7 @@ void chooseSpells(Character& character, const CharacterClass& selectedClass) {
         if (!validChoice) continue;
 
         bool alreadySelected = false;
-        for (const auto& existing : character.getSpells()) {
+        for (const auto& existing : character->getSpells()) {
             if (existing.getName() == newSpell.getName()) {
                 alreadySelected = true;
                 break;
@@ -777,7 +783,7 @@ void chooseSpells(Character& character, const CharacterClass& selectedClass) {
             continue;
         }
 
-        character.addSpell(newSpell);
+        character->addSpell(newSpell);
         std::cout << newSpell.getName() << " added.\n";
     }
 }
@@ -876,9 +882,9 @@ void createCharacter() {
     currentCharacter.setClass(characterClass);
 
     // Skill, Feat, and Spell Selection
-    chooseSkills(currentCharacter, characterClass, scores);
-    chooseFeats(currentCharacter);
-    chooseSpells(currentCharacter, characterClass);
+    chooseSkills(&currentCharacter, characterClass, scores);
+    chooseFeats(&currentCharacter);
+    chooseSpells(&currentCharacter, characterClass);
 
     // Mark created
     currentCharacter.markCreated();
